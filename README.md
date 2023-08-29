@@ -5,7 +5,8 @@ FooAppleWallet react plugin
 ## Installation
 
 ```sh
-npm install fooapplewalletplugin
+pod 'FooAppleWalletPlugin'
+pod 'FooAppleWallet/Debug', :modular_headers => true
 ```
 
 ## Usage
