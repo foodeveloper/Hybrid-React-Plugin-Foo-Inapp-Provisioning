@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "fooapplewalletplugin": ["./src/index"]
+      "fooapplewalletreactplugin": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

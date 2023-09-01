@@ -1,7 +1,7 @@
 {
-  "name": "fooapplewalletplugin",
+  "name": "fooapplewalletreactplugin",
   "version": "0.1.0",
-  "description": "FooAppleWallet react plugin",
+  "description": "FooAppleWallet port to react",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -34,7 +34,7 @@
     "release": "release-it",
     "example": "yarn --cwd example",
     "build:android": "cd example/android && ./gradlew assembleDebug --no-daemon --console=plain -PreactNativeArchitectures=arm64-v8a",
-    "build:ios": "cd example/ios && xcodebuild -workspace FooAppleWalletPluginExample.xcworkspace -scheme FooAppleWalletPluginExample -configuration Debug -sdk iphonesimulator CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO",
+    "build:ios": "cd example/ios && xcodebuild -workspace FooapplewalletreactpluginExample.xcworkspace -scheme FooapplewalletreactpluginExample -configuration Debug -sdk iphonesimulator CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO",
     "bootstrap": "yarn example && yarn install && yarn example pods",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build"
   },
@@ -43,13 +43,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://git-secure.foo.mobi/mobile/react/plugin/foo-apple-pay-plugin.git",
+  "repository": "https://github.com/foodeveloper/Hybrid-React-Plugin-Foo-Inapp-Provisioning",
   "author": "FOO_ <sami.sharaf@foo.mobi> (https://foo.mobi)",
   "license": "MIT",
   "bugs": {
-    "url": "https://git-secure.foo.mobi/mobile/react/plugin/foo-apple-pay-plugin.git/issues"
+    "url": "https://github.com/foodeveloper/Hybrid-React-Plugin-Foo-Inapp-Provisioning/issues"
   },
-  "homepage": "https://git-secure.foo.mobi/mobile/react/plugin/foo-apple-pay-plugin.git#readme",
+  "homepage": "https://github.com/foodeveloper/Hybrid-React-Plugin-Foo-Inapp-Provisioning#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -71,7 +71,7 @@
     "prettier": "^2.0.5",
     "react": "18.2.0",
     "react-native": "0.72.4",
-    "react-native-builder-bob": "^0.21.3",
+    "react-native-builder-bob": "^0.20.0",
     "release-it": "^15.0.0",
     "turbo": "^1.10.7",
     "typescript": "^5.0.2"

@@ -1,4 +1,4 @@
-package com.fooapplewalletpluginexample;
+package com.fooapplewalletreactpluginexample;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

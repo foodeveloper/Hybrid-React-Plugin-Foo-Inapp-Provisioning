@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  FooAppleWalletPluginExample
+//  FooapplewalletreactpluginExample
 //
 
 import Foundation

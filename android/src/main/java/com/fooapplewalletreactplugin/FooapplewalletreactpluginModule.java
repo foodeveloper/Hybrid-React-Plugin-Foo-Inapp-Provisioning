@@ -1,4 +1,4 @@
-package com.fooapplewalletplugin;
+package com.fooapplewalletreactplugin;
 
 import androidx.annotation.NonNull;
 
@@ -8,11 +8,11 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 
-@ReactModule(name = FooAppleWalletPluginModule.NAME)
-public class FooAppleWalletPluginModule extends ReactContextBaseJavaModule {
-  public static final String NAME = "FooAppleWalletPlugin";
+@ReactModule(name = FooapplewalletreactpluginModule.NAME)
+public class FooapplewalletreactpluginModule extends ReactContextBaseJavaModule {
+  public static final String NAME = "Fooapplewalletreactplugin";
 
-  public FooAppleWalletPluginModule(ReactApplicationContext reactContext) {
+  public FooapplewalletreactpluginModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
 

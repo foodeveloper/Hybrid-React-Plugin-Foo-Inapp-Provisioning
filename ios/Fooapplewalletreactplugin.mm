@@ -1,23 +1,23 @@
-#import "FooAppleWalletPlugin.h"
+#import "Fooapplewalletreactplugin.h"
 
 #import <React/RCTUtils.h>
 #import <FooAppleWallet/FooAppleWallet-umbrella.h>
 
-@interface FooAppleWalletPlugin () <FOInAppProtocol>
+@interface Fooapplewalletreactplugin () <FOInAppProtocol>
 
 @property (copy, nonatomic) RCTPromiseResolveBlock provisioningResolveBlock;
 @property (copy, nonatomic) RCTPromiseRejectBlock provisioningRejectBlock;
 
 @end
 
-@implementation FooAppleWalletPlugin
+@implementation Fooapplewalletreactplugin
 
 + (instancetype)sharedInstance
 {
-    static FooAppleWalletPlugin *sharedInstance = nil;
+    static Fooapplewalletreactplugin *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[FooAppleWalletPlugin alloc] init];
+        sharedInstance = [[Fooapplewalletreactplugin alloc] init];
     });
     return sharedInstance;
 }
@@ -67,8 +67,8 @@ RCT_EXPORT_METHOD(addCardForUserId:(nullable NSString *)userId
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [FooAppleWalletPlugin sharedInstance].provisioningResolveBlock = resolve;
-    [FooAppleWalletPlugin sharedInstance].provisioningRejectBlock = reject;
+    [Fooapplewalletreactplugin sharedInstance].provisioningResolveBlock = resolve;
+    [Fooapplewalletreactplugin sharedInstance].provisioningRejectBlock = reject;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *presentedViewController = RCTPresentedViewController();
@@ -87,8 +87,8 @@ RCT_EXPORT_METHOD(addCardForUserIdWithPanAndExpiry:(nullable NSString *)userId
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-    [FooAppleWalletPlugin sharedInstance].provisioningResolveBlock = resolve;
-    [FooAppleWalletPlugin sharedInstance].provisioningRejectBlock = reject;
+    [Fooapplewalletreactplugin sharedInstance].provisioningResolveBlock = resolve;
+    [Fooapplewalletreactplugin sharedInstance].provisioningRejectBlock = reject;
 
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *presentedViewController = RCTPresentedViewController();
@@ -101,10 +101,10 @@ RCT_EXPORT_METHOD(addCardForUserIdWithPanAndExpiry:(nullable NSString *)userId
     NSString *result = [[NSString alloc] initWithFormat:@"%u", error];
     
     if (error == 0) {
-        [FooAppleWalletPlugin sharedInstance].provisioningResolveBlock(result);
+        [Fooapplewalletreactplugin sharedInstance].provisioningResolveBlock(result);
     } else {
         NSError *error = [[NSError alloc] initWithDomain:@"FOInAppAddCardError" code:(NSInteger)[result intValue] userInfo:nil];
-        [FooAppleWalletPlugin sharedInstance].provisioningRejectBlock(result, errorMessage, error);
+        [Fooapplewalletreactplugin sharedInstance].provisioningRejectBlock(result, errorMessage, error);
     }
 }
 

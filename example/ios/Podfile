@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-source 'git@git.foo.mobi:iphone-lib/foopods.git'
+source 'git@github.com:foodeveloper/foopods.git'
 
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
@@ -28,7 +28,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'FooAppleWalletPluginExample' do
+target 'FooapplewalletreactpluginExample' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -48,9 +48,9 @@ target 'FooAppleWalletPluginExample' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
   
-  pod 'FooAppleWallet/Debug', :modular_headers => true
+  pod 'FooAppleWalletFramework'
 
-  target 'FooAppleWalletPluginExampleTests' do
+  target 'FooapplewalletreactpluginExampleTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -63,5 +63,14 @@ target 'FooAppleWalletPluginExample' do
       :mac_catalyst_enabled => false
     )
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    
+    installer.pods_project.targets.each do |target|
+        if target.name == "fooapplewalletreactplugin"
+            target.build_configurations.each do |config|
+                config.build_settings['FRAMEWORK_SEARCH_PATHS'] = '${PODS_ROOT}/**'
+            end
+        end
+    end
+    
   end
 end
