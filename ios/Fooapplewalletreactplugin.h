@@ -5,6 +5,7 @@
 @interface Fooapplewalletreactplugin : NSObject <NativeFooapplewalletreactpluginSpec>
 #else
 #import <React/RCTBridgeModule.h>
+#import "WalletExtensionplugin.h"
 
 @interface Fooapplewalletreactplugin : NSObject <RCTBridgeModule>
 #endif

@@ -42,6 +42,15 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
         expiryDate: string;
     
     }
+    export interface FOCard {
+      identifier: string;
+      title: string;
+      cardArt: any;
+      cardholderName: string;
+      panSuffix: string;
+      pan?: string | null;
+      expiryDate?: string | null;
+    }
     export function addCardForUserId({userId , deviceId , cardId , cardHolderName , cardPanSuffix , sessionId,localizedDescription }:CardUserIdDetails): Promise<string> {
       return Fooapplewalletreactplugin.addCardForUserId(userId , deviceId , cardId , cardHolderName , cardPanSuffix , sessionId,localizedDescription);
     }
@@ -54,6 +63,9 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
     export function isCardAddedToLocalWalletWithCardSuffix (cardSuffix:string): Promise<boolean> {
       return Fooapplewalletreactplugin.isCardAddedToLocalWalletWithCardSuffix(cardSuffix);
     }
-    export function isCardAddedToRemoteWalletWithCardSuffix (cardSuffix:string): Promise<boolean> {
-      return Fooapplewalletreactplugin.isCardAddedToRemoteWalletWithCardSuffix(cardSuffix);
+    export function didGetAvailableLocalCards (cards:FOCard[]): Promise<void> {
+      return Fooapplewalletreactplugin.didGetAvailableLocalCards(cards);
+    }
+    export function didGetAvailableRemoteCards (cards:FOCard[]): Promise<void> {
+      return Fooapplewalletreactplugin.didGetAvailableRemoteCards(cards);
     }
