@@ -34,6 +34,42 @@ RCT_EXPORT_METHOD(setHostName:(NSString *)hostName
     resolve(@"Success");
 }
 
+RCT_EXPORT_METHOD(setAppGroupIdentifier:(NSString *)identifier
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    
+    [FOAppleWallet setAppGroupIdentifier:identifier];
+    resolve(@"Success");
+}
+
+RCT_EXPORT_METHOD(setExtensionNeedsAuthentication:(bool)needsAuthentication
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    
+    [FOAppleWallet setExtensionNeedsAuthentication:needsAuthentication];
+    resolve(@"Success");
+}
+
+RCT_EXPORT_METHOD(setExtensionHasAvailableLocalPasses:(bool)hasLocalPasses
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    
+    [FOAppleWallet setExtensionHasAvailableLocalPasses:hasLocalPasses];
+    resolve(@"Success");
+}
+
+RCT_EXPORT_METHOD(setExtensionHasAvailableRemotePasses:(bool)hasRemotePasses
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    
+    [FOAppleWallet setExtensionHasAvailableRemotePasses:hasRemotePasses];
+    resolve(@"Success");
+}
+
 RCT_EXPORT_METHOD(deviceSupportsAppleWallet :(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
