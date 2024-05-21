@@ -69,3 +69,15 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
     export function didGetAvailableRemoteCards (cards:FOCard[]): Promise<void> {
       return Fooapplewalletreactplugin.didGetAvailableRemoteCards(cards);
     }
+    export function setAppGroupIdentifier(identifier: string): Promise<string> {
+      return Fooapplewalletreactplugin.setAppGroupIdentifier(identifier);
+    }
+    export function  setExtensionNeedsAuthentication(needsAuthentication: boolean): Promise<string> {
+      return Fooapplewalletreactplugin.setExtensionNeedsAuthentication(needsAuthentication);
+    }
+    export function setExtensionHasAvailableLocalPasses(hasLocalPasses: boolean): Promise<string> {
+      return Fooapplewalletreactplugin.setExtensionHasAvailableLocalPasses(hasLocalPasses);
+    }
+    export function setExtensionHasAvailableRemotePasses(hasRemotePasses: boolean): Promise<string> {
+      return Fooapplewalletreactplugin.setExtensionHasAvailableRemotePasses(hasRemotePasses);
+    }
