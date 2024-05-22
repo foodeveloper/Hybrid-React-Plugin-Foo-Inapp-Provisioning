@@ -43,7 +43,7 @@ RCT_EXPORT_METHOD(setAppGroupIdentifier:(NSString *)identifier
     resolve(@"Success");
 }
 
-RCT_EXPORT_METHOD(setExtensionNeedsAuthentication:(bool)needsAuthentication
+RCT_EXPORT_METHOD(setExtensionNeedsAuthentication:(BOOL)needsAuthentication
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
@@ -52,7 +52,7 @@ RCT_EXPORT_METHOD(setExtensionNeedsAuthentication:(bool)needsAuthentication
     resolve(@"Success");
 }
 
-RCT_EXPORT_METHOD(setExtensionHasAvailableLocalPasses:(bool)hasLocalPasses
+RCT_EXPORT_METHOD(setExtensionHasAvailableLocalPasses:(BOOL)hasLocalPasses
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
@@ -61,7 +61,7 @@ RCT_EXPORT_METHOD(setExtensionHasAvailableLocalPasses:(bool)hasLocalPasses
     resolve(@"Success");
 }
 
-RCT_EXPORT_METHOD(setExtensionHasAvailableRemotePasses:(bool)hasRemotePasses
+RCT_EXPORT_METHOD(setExtensionHasAvailableRemotePasses:(BOOL)hasRemotePasses
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
