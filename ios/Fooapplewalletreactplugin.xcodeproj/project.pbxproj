@@ -20,6 +20,10 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libFooapplewalletreactplugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFooapplewalletreactplugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21396F352C05D04000D99131 /* EventEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventEmitter.h; sourceTree = "<group>"; };
+		21396F362C05D04000D99131 /* EventEmitter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = EventEmitter.mm; sourceTree = "<group>"; };
+		21396F382C05D0BF00D99131 /* ReactCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactCard.h; sourceTree = "<group>"; };
+		21396F392C05D0BF00D99131 /* ReactCard.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReactCard.mm; sourceTree = "<group>"; };
 		2197D2872BBEA89500B86479 /* WalletExtensionplugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletExtensionplugin.h; sourceTree = "<group>"; };
 		2197D2882BBEA89500B86479 /* WalletExtensionplugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WalletExtensionplugin.mm; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* Fooapplewalletreactplugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fooapplewalletreactplugin.h; sourceTree = "<group>"; };
@@ -52,6 +56,10 @@
 				2197D2882BBEA89500B86479 /* WalletExtensionplugin.mm */,
 				B3E7B5881CC2AC0600A0062D /* Fooapplewalletreactplugin.h */,
 				B3E7B5891CC2AC0600A0062D /* Fooapplewalletreactplugin.mm */,
+				21396F352C05D04000D99131 /* EventEmitter.h */,
+				21396F362C05D04000D99131 /* EventEmitter.mm */,
+				21396F382C05D0BF00D99131 /* ReactCard.h */,
+				21396F392C05D0BF00D99131 /* ReactCard.mm */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";

@@ -11,6 +11,7 @@
 #import <FooAppleWallet/FooAppleWallet-umbrella.h>
 
 #import "EventEmitter.h"
+#import "ReactCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -25,15 +25,43 @@ void (^remoteCardsCompletionHandler)(NSArray<FOCard *> * _Nonnull);
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(didGetAvailableLocalCards:(NSArray <FOCard *> *)cards) {
+RCT_EXPORT_METHOD(didGetAvailableLocalCards:(NSArray <ReactCard *> *)cards) {
+    NSMutableArray<FOCard *> *focards = [[NSMutableArray alloc] init];
+    for (ReactCard *reactCard in cards) {
+        NSData *base64Data = [[NSData alloc] initWithBase64EncodedString:reactCard.cardArtBase64
+                                                                 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        UIImage *cardImage = [[UIImage alloc] initWithData:base64Data];
+        FOCard *card = [[FOCard alloc] initWithIdentifier:reactCard.identifier
+                                                cardTitle:reactCard.title
+                                                  cardArt:cardImage
+                                           cardholderName:reactCard.cardholderName
+                                                panSuffix:reactCard.panSuffix
+                                                      pan:reactCard.pan
+                                               expiryDate:reactCard.expiryDate];
+        [focards addObject:card];
+    }
     if (cards && cards.count > 0) {
-        localCardsCompletionHandler(cards);
+        localCardsCompletionHandler(focards);
     }
 }
 
-RCT_EXPORT_METHOD(didGetAvailableRemoteCards:(NSArray <FOCard *> *)cards) {
+RCT_EXPORT_METHOD(didGetAvailableRemoteCards:(NSArray <ReactCard *> *)cards) {
+    NSMutableArray<FOCard *> *focards = [[NSMutableArray alloc] init];
+    for (ReactCard *reactCard in cards) {
+        NSData *base64Data = [[NSData alloc] initWithBase64EncodedString:reactCard.cardArtBase64
+                                                                 options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        UIImage *cardImage = [[UIImage alloc] initWithData:base64Data];
+        FOCard *card = [[FOCard alloc] initWithIdentifier:reactCard.identifier
+                                                cardTitle:reactCard.title
+                                                  cardArt:cardImage
+                                           cardholderName:reactCard.cardholderName
+                                                panSuffix:reactCard.panSuffix
+                                                      pan:reactCard.pan
+                                               expiryDate:reactCard.expiryDate];
+        [focards addObject:card];
+    }
     if (cards && cards.count > 0) {
-        remoteCardsCompletionHandler(cards);
+        remoteCardsCompletionHandler(focards);
     }
 }
 
