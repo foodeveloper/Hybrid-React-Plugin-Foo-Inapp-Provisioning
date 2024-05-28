@@ -42,10 +42,10 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
         expiryDate: string;
     
     }
-    export interface FOCard {
+    export interface ReactCard {
       identifier: string;
       title: string;
-      cardArt: any;
+      cardArtBase64: string;
       cardholderName: string;
       panSuffix: string;
       pan?: string | null;
@@ -63,10 +63,10 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
     export function isCardAddedToLocalWalletWithCardSuffix (cardSuffix:string): Promise<boolean> {
       return Fooapplewalletreactplugin.isCardAddedToLocalWalletWithCardSuffix(cardSuffix);
     }
-    export function didGetAvailableLocalCards (cards:FOCard[]): Promise<void> {
+    export function didGetAvailableLocalCards (cards:ReactCard[]): Promise<void> {
       return Fooapplewalletreactplugin.didGetAvailableLocalCards(cards);
     }
-    export function didGetAvailableRemoteCards (cards:FOCard[]): Promise<void> {
+    export function didGetAvailableRemoteCards (cards:ReactCard[]): Promise<void> {
       return Fooapplewalletreactplugin.didGetAvailableRemoteCards(cards);
     }
     export function setAppGroupIdentifier(identifier: string): Promise<string> {
