@@ -11,19 +11,21 @@ static EventEmitter *currentEmitter = nil;
 
 @implementation EventEmitter
 
-+ (instancetype)emitter {
+- (instancetype)init {
     if (!currentEmitter) {
-        currentEmitter = [[EventEmitter alloc] init];
+        currentEmitter = self;
     }
-    return currentEmitter;
+    return self;
 }
+
+RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents {
     return @[@"shouldGetLocalCards", @"shouldGetRemoteCards"];
 }
 
-- (void)sendEvent:(NSString *)eventName {
-    [currentEmitter sendEvent:eventName];
++ (void)sendEvent:(NSString *)eventName {
+    [currentEmitter sendEventWithName:eventName body:nil];
 }
 
 @end

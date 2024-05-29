@@ -10,11 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EventEmitter : RCTEventEmitter
+@interface EventEmitter : RCTEventEmitter <RCTBridgeModule>
 
-+ (instancetype)emitter;
-
-- (void)sendEvent:(NSString *)eventName;
++ (void)sendEvent:(NSString *)eventName;
 
 @end
 

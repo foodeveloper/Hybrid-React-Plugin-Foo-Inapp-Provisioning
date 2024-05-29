@@ -12,12 +12,12 @@
 
 - (void)shouldCheckForCardsToAddLocallyWithCompletion:(void (^)(NSArray<FOCard *> * _Nonnull))completion {
     [FOAppleWallet setWalletExtensionLocalPluginCompletion:completion];
-    [[EventEmitter emitter] sendEvent:@"shouldGetLocalCards"];
+    [EventEmitter sendEvent:@"shouldGetLocalCards"];
 }
 
 - (void)shouldCheckForCardsToAddRemotelyWithCompletion:(void (^)(NSArray<FOCard *> * _Nonnull))completion {
     [FOAppleWallet setWalletExtensionRemotePluginCompletion:completion];
-    [[EventEmitter emitter] sendEvent:@"shouldGetRemoteCards"];
+    [EventEmitter sendEvent:@"shouldGetRemoteCards"];
 }
 
 @end
