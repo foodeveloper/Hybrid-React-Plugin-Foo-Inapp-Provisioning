@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <React/RCTBridgeModule.h>
 #import <FooAppleWallet/FooAppleWallet-umbrella.h>
 
 #import "EventEmitter.h"
@@ -15,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WalletExtensionplugin : FOAppleWalletExtension <RCTBridgeModule>
+@interface WalletExtensionplugin : FOAppleWalletExtension
 
 @end
 
