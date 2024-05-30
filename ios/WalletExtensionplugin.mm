@@ -7,12 +7,15 @@
 //
 
 #import "WalletExtensionplugin.h"
+#import "Fooapplewalletreactextensionhandler.h"
+
+Fooapplewalletreactextensionhandler *handler;
 
 @implementation WalletExtensionplugin
 
 - (void)shouldCheckForCardsToAddLocallyWithCompletion:(void (^)(NSArray<FOCard *> * _Nonnull))completion {
+    handler = [[Fooapplewalletreactextensionhandler alloc] init];
     [FOAppleWallet setWalletExtensionLocalPluginCompletion:completion];
-    [[EventEmitter emitter] sendEvent:@"shouldGetLocalCards"];
 }
 
 - (void)shouldCheckForCardsToAddRemotelyWithCompletion:(void (^)(NSArray<FOCard *> * _Nonnull))completion {
