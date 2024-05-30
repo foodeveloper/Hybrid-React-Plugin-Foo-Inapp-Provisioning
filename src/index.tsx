@@ -81,3 +81,9 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
     export function setExtensionHasAvailableRemotePasses(hasRemotePasses: boolean): Promise<string> {
       return Fooapplewalletreactplugin.setExtensionHasAvailableRemotePasses(hasRemotePasses);
     }
+
+    export const didGetLocalCards = (cards: ReactCard[]) => {
+      if (NativeModules && NativeModules.Fooapplewalletreactextensionhandler) {
+        NativeModules.Fooapplewalletreactextensionhandler.didGetLocalCards(cards);
+      }
+    }

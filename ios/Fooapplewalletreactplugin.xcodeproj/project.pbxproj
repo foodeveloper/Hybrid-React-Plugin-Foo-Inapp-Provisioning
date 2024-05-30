@@ -20,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libFooapplewalletreactplugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFooapplewalletreactplugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		211D2B472C08A374007FCFF1 /* Fooapplewalletreactextensionhandler.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Fooapplewalletreactextensionhandler.mm; sourceTree = "<group>"; };
+		211D2B482C08A374007FCFF1 /* Fooapplewalletreactextensionhandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fooapplewalletreactextensionhandler.h; sourceTree = "<group>"; };
 		21396F352C05D04000D99131 /* EventEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventEmitter.h; sourceTree = "<group>"; };
 		21396F362C05D04000D99131 /* EventEmitter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = EventEmitter.mm; sourceTree = "<group>"; };
 		21396F382C05D0BF00D99131 /* ReactCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactCard.h; sourceTree = "<group>"; };
@@ -60,6 +62,8 @@
 				21396F362C05D04000D99131 /* EventEmitter.mm */,
 				21396F382C05D0BF00D99131 /* ReactCard.h */,
 				21396F392C05D0BF00D99131 /* ReactCard.mm */,
+				211D2B482C08A374007FCFF1 /* Fooapplewalletreactextensionhandler.h */,
+				211D2B472C08A374007FCFF1 /* Fooapplewalletreactextensionhandler.mm */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
