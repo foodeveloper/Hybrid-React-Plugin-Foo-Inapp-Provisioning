@@ -12,6 +12,7 @@ static EventEmitter *currentEmitter = nil;
 @implementation EventEmitter
 
 - (instancetype)init {
+    self = [super init];
     if (!currentEmitter) {
         currentEmitter = self;
     }
