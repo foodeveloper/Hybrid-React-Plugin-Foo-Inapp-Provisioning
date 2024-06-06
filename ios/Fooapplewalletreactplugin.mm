@@ -1,7 +1,7 @@
-#import "Fooapplewalletreactplugin.h"
-
 #import <React/RCTUtils.h>
-#import <FooAppleWallet/FooAppleWallet-umbrella.h>
+#import <FooAppleWallet/FOAppleWallet-Umberlla.h>
+
+#import "Fooapplewalletreactplugin.h"
 
 @interface Fooapplewalletreactplugin () <FOInAppProtocol>
 
@@ -93,19 +93,31 @@ RCT_EXPORT_METHOD(isCardAddedToRemoteWalletWithCardSuffix:(NSString *)cardSuffix
     resolve(@(isCardAdded));
 }
 
-RCT_EXPORT_METHOD(didGetAvailableLocalCards:(NSArray <ReactCard *> *)cards) {
+RCT_EXPORT_METHOD(didGetAvailableLocalCards:(NSArray *)cards) {
     NSMutableArray<FOCard *> *focards = [[NSMutableArray alloc] init];
-    for (ReactCard *reactCard in cards) {
-        NSData *base64Data = [[NSData alloc] initWithBase64EncodedString:reactCard.cardArtBase64
+    for (NSDictionary *reactCard in cards) {
+        // Image
+        NSString *base64String = [reactCard objectForKey:@"cardArtBase64"];
+        NSData *base64Data = [[NSData alloc] initWithBase64EncodedString:base64String
                                                                  options:NSDataBase64DecodingIgnoreUnknownCharacters];
         UIImage *cardImage = [[UIImage alloc] initWithData:base64Data];
-        FOCard *card = [[FOCard alloc] initWithIdentifier:reactCard.identifier
-                                                cardTitle:reactCard.title
+        
+        // String params
+        NSString *identifier = [reactCard objectForKey:@"identifier"];
+        NSString *title = [reactCard objectForKey:@"title"];
+        NSString *cardholderName = [reactCard objectForKey:@"cardholderName"];
+        NSString *panSuffix = [reactCard objectForKey:@"panSuffix"];
+        NSString *pan = [reactCard objectForKey:@"pan"];
+        NSString *expiryDate = [reactCard objectForKey:@"expiryDate"];
+        
+        // FOCard
+        FOCard *card = [[FOCard alloc] initWithIdentifier:identifier
+                                                cardTitle:title
                                                   cardArt:cardImage
-                                           cardholderName:reactCard.cardholderName
-                                                panSuffix:reactCard.panSuffix
-                                                      pan:reactCard.pan
-                                               expiryDate:reactCard.expiryDate];
+                                           cardholderName:cardholderName
+                                                panSuffix:panSuffix
+                                                      pan:pan
+                                               expiryDate:expiryDate];
         [focards addObject:card];
     }
     if (focards && focards.count > 0) {
@@ -115,17 +127,29 @@ RCT_EXPORT_METHOD(didGetAvailableLocalCards:(NSArray <ReactCard *> *)cards) {
 
 RCT_EXPORT_METHOD(didGetAvailableRemoteCards:(NSArray <ReactCard *> *)cards) {
     NSMutableArray<FOCard *> *focards = [[NSMutableArray alloc] init];
-    for (ReactCard *reactCard in cards) {
-        NSData *base64Data = [[NSData alloc] initWithBase64EncodedString:reactCard.cardArtBase64
+    for (NSDictionary *reactCard in cards) {
+        // Image
+        NSString *base64String = [reactCard objectForKey:@"cardArtBase64"];
+        NSData *base64Data = [[NSData alloc] initWithBase64EncodedString:base64String
                                                                  options:NSDataBase64DecodingIgnoreUnknownCharacters];
         UIImage *cardImage = [[UIImage alloc] initWithData:base64Data];
-        FOCard *card = [[FOCard alloc] initWithIdentifier:reactCard.identifier
-                                                cardTitle:reactCard.title
+        
+        // String params
+        NSString *identifier = [reactCard objectForKey:@"identifier"];
+        NSString *title = [reactCard objectForKey:@"title"];
+        NSString *cardholderName = [reactCard objectForKey:@"cardholderName"];
+        NSString *panSuffix = [reactCard objectForKey:@"panSuffix"];
+        NSString *pan = [reactCard objectForKey:@"pan"];
+        NSString *expiryDate = [reactCard objectForKey:@"expiryDate"];
+        
+        // FOCard
+        FOCard *card = [[FOCard alloc] initWithIdentifier:identifier
+                                                cardTitle:title
                                                   cardArt:cardImage
-                                           cardholderName:reactCard.cardholderName
-                                                panSuffix:reactCard.panSuffix
-                                                      pan:reactCard.pan
-                                               expiryDate:reactCard.expiryDate];
+                                           cardholderName:cardholderName
+                                                panSuffix:panSuffix
+                                                      pan:pan
+                                               expiryDate:expiryDate];
         [focards addObject:card];
     }
     if (focards && focards.count > 0) {

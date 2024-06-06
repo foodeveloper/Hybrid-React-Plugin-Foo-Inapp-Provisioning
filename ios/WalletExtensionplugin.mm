@@ -6,21 +6,51 @@
 //  Copyright © 2024 Facebook. All rights reserved.
 //
 
+#import <React/RCTLog.h>
+#import <React/RCTBundleURLProvider.h>
+
 #import "WalletExtensionplugin.h"
-#import "Fooapplewalletreactextensionhandler.h"
+#import "RCTExtModule.h"
 
-Fooapplewalletreactextensionhandler *handler;
+@implementation WalletExtensionplugin {
+    RCTBridge *_bridge;
+}
 
-@implementation WalletExtensionplugin
+- (void)createBridgeIfNeededWithCompletionHandler:(void (^)())completion {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (!self->_bridge) {
+            NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.WalletNonUIExtension"];
+            self->_bridge = [[RCTBridge alloc] initWithBundleURL:jsCodeLocation
+                                            moduleProvider:nil
+                                             launchOptions:nil];
+        }
+        completion();
+    });
+}
+
+- (RCTExtModule *)getEventModule {
+    RCTExtModule *eventModule = [_bridge moduleForClass:[RCTExtModule class]];
+    return eventModule;
+}
 
 - (void)shouldCheckForCardsToAddLocallyWithCompletion:(void (^)(NSArray<FOCard *> * _Nonnull))completion {
-    handler = [[Fooapplewalletreactextensionhandler alloc] init];
     [FOAppleWallet setWalletExtensionLocalPluginCompletion:completion];
+    
+    [self createBridgeIfNeededWithCompletionHandler:^{
+        RCTExtModule *eventModule = [self getEventModule];
+        [eventModule sendCustomEventWithName:@"onShouldCheckForLocalCards" andParameters:nil];
+    }];
 }
 
 - (void)shouldCheckForCardsToAddRemotelyWithCompletion:(void (^)(NSArray<FOCard *> * _Nonnull))completion {
     [FOAppleWallet setWalletExtensionRemotePluginCompletion:completion];
-    [[EventEmitter emitter] sendEvent:@"shouldGetRemoteCards"];
+    
+    [self createBridgeIfNeededWithCompletionHandler:^{
+        RCTExtModule *eventModule = [self getEventModule];
+        [eventModule sendCustomEventWithName:@"onShouldCheckForRemoteCards" andParameters:nil];
+    }];
 }
+
+
 
 @end

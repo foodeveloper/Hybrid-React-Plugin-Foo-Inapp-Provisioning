@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <FooAppleWallet/FooAppleWallet-umbrella.h>
+#import <FooAppleWallet/FOAppleWallet-Umberlla.h>
 
-#import "EventEmitter.h"
 #import "ReactCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
