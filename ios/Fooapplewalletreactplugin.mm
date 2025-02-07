@@ -109,6 +109,7 @@ RCT_EXPORT_METHOD(didGetAvailableLocalCards:(NSArray *)cards) {
         NSString *panSuffix = [reactCard objectForKey:@"panSuffix"];
         NSString *pan = [reactCard objectForKey:@"pan"];
         NSString *expiryDate = [reactCard objectForKey:@"expiryDate"];
+        NSString *cardScheme = [reactCard objectForKey:@"cardScheme"];
         
         // FOCard
         FOCard *card = [[FOCard alloc] initWithIdentifier:identifier
@@ -117,7 +118,8 @@ RCT_EXPORT_METHOD(didGetAvailableLocalCards:(NSArray *)cards) {
                                            cardholderName:cardholderName
                                                 panSuffix:panSuffix
                                                       pan:pan
-                                               expiryDate:expiryDate];
+                                               expiryDate:expiryDate
+                                               cardScheme:[self getCardScheme:cardScheme]];
         [focards addObject:card];
     }
     if (focards && focards.count > 0) {
@@ -141,6 +143,7 @@ RCT_EXPORT_METHOD(didGetAvailableRemoteCards:(NSArray <ReactCard *> *)cards) {
         NSString *panSuffix = [reactCard objectForKey:@"panSuffix"];
         NSString *pan = [reactCard objectForKey:@"pan"];
         NSString *expiryDate = [reactCard objectForKey:@"expiryDate"];
+        NSString *cardScheme = [reactCard objectForKey:@"cardScheme"];
         
         // FOCard
         FOCard *card = [[FOCard alloc] initWithIdentifier:identifier
@@ -149,7 +152,8 @@ RCT_EXPORT_METHOD(didGetAvailableRemoteCards:(NSArray <ReactCard *> *)cards) {
                                            cardholderName:cardholderName
                                                 panSuffix:panSuffix
                                                       pan:pan
-                                               expiryDate:expiryDate];
+                                               expiryDate:expiryDate
+                                               cardScheme:[self getCardScheme:cardScheme]];
         [focards addObject:card];
     }
     if (focards && focards.count > 0) {
@@ -164,6 +168,7 @@ RCT_EXPORT_METHOD(addCardForUserId:(nullable NSString *)userId
                   cardPanSuffix:(NSString *)cardPanSuffix
                   sessionId:(nullable NSString *)sessionId
                   localizedDescription:(nullable NSString *)localizedDescription
+                  cardScheme:(nullable NSString *)cardScheme
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
@@ -172,7 +177,7 @@ RCT_EXPORT_METHOD(addCardForUserId:(nullable NSString *)userId
     
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *presentedViewController = RCTPresentedViewController();
-        [FOInAppProvisioning addCardForUserId:userId deviceId:deviceId cardId:cardId cardHolderName:cardHolderName cardPanSuffix:cardPanSuffix sessionId:sessionId localizedDescription:localizedDescription inViewController:presentedViewController delegate:self];
+      [FOInAppProvisioning addCardForUserId:userId deviceId:deviceId cardId:cardId cardHolderName:cardHolderName cardPanSuffix:cardPanSuffix cardScheme:[self getCardScheme:cardScheme] sessionId:sessionId localizedDescription:localizedDescription inViewController:presentedViewController delegate:self];
     });
 }
 
@@ -184,6 +189,7 @@ RCT_EXPORT_METHOD(addCardForUserIdWithPanAndExpiry:(nullable NSString *)userId
                   localizedDescription:(nullable NSString *)localizedDescription
                   pan:(NSString *)pan
                   expiryDate:(NSString *)expiryDate
+                  cardScheme:(nullable NSString *)cardScheme
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
@@ -192,7 +198,7 @@ RCT_EXPORT_METHOD(addCardForUserIdWithPanAndExpiry:(nullable NSString *)userId
 
     dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *presentedViewController = RCTPresentedViewController();
-        [FOInAppProvisioning addCardForUserId:userId deviceId:deviceId cardId:cardId cardHolderName:cardHolderName cardPanSuffix:cardPanSuffix localizedDescription:localizedDescription pan:pan expiryDate:expiryDate inViewController:presentedViewController delegate:self];
+      [FOInAppProvisioning addCardForUserId:userId deviceId:deviceId cardId:cardId cardHolderName:cardHolderName cardPanSuffix:cardPanSuffix localizedDescription:localizedDescription pan:pan expiryDate:expiryDate cardScheme:[self getCardScheme:cardScheme] inViewController:presentedViewController delegate:self];
     });
 }
 
@@ -206,6 +212,22 @@ RCT_EXPORT_METHOD(addCardForUserIdWithPanAndExpiry:(nullable NSString *)userId
         NSError *error = [[NSError alloc] initWithDomain:@"FOInAppAddCardError" code:(NSInteger)[result intValue] userInfo:nil];
         [Fooapplewalletreactplugin sharedInstance].provisioningRejectBlock(result, errorMessage, error);
     }
+}
+
+- (FOInAppCardScheme)getCardScheme:(NSString *)string {
+  if ([string isEqualToString:@"MASTERCARD"]) {
+    return FOInAppCardSchemeMastercard;
+  } else if ([string isEqualToString:@"VISA"]) {
+    return FOInAppCardSchemeVisa;
+  } else if ([string isEqualToString:@"MADA"]) {
+    return FOInAppCardSchemeMada;
+  } else if ([string isEqualToString:@"MADA_VISA"]) {
+    return FOInAppCardSchemeMadaVisa;
+  } else if ([string isEqualToString:@"MADA_MASTERCARD"]) {
+    return FOInAppCardSchemeMadaMastercard;
+  } else {
+    return FOInAppCardSchemeUnspecified;
+  }
 }
 
 @end

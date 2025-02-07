@@ -31,8 +31,7 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
         cardPanSuffix: string;
         sessionId?: string | null; // nullable from "nullable NSString"
         localizedDescription?: string | null;
-     
-    
+        cardScheme?: string | null;
     }
     export interface CardPanIdDetails {
         userId?: string | null;  // nullable from "nullable NSString"
@@ -43,7 +42,7 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
         localizedDescription?: string | null; // nullable from "nullable NSString"
         pan: string;
         expiryDate: string;
-    
+        cardScheme?: string | null;
     }
     export interface ReactCard {
       identifier: string;
@@ -53,12 +52,13 @@ const Fooapplewalletreactplugin = NativeModules.Fooapplewalletreactplugin
       panSuffix: string;
       pan?: string | null;
       expiryDate?: string | null;
+      cardScheme?: string | null;
     }
-    export function addCardForUserId({userId , deviceId , cardId , cardHolderName , cardPanSuffix , sessionId,localizedDescription }:CardUserIdDetails): Promise<string> {
-      return Fooapplewalletreactplugin.addCardForUserId(userId , deviceId , cardId , cardHolderName , cardPanSuffix , sessionId,localizedDescription);
+    export function addCardForUserId({userId , deviceId , cardId , cardHolderName , cardPanSuffix , sessionId,localizedDescription, cardScheme }:CardUserIdDetails): Promise<string> {
+      return Fooapplewalletreactplugin.addCardForUserId(userId , deviceId , cardId , cardHolderName , cardPanSuffix , sessionId,localizedDescription,cardScheme);
     }
-    export function addCardForPanId({userId , deviceId , cardId , cardHolderName , cardPanSuffix , localizedDescription , pan , expiryDate}:CardPanIdDetails): Promise<string> {
-      return Fooapplewalletreactplugin.addCardForUserIdWithPanAndExpiry(userId , deviceId , cardId , cardHolderName , cardPanSuffix , localizedDescription , pan , expiryDate);
+    export function addCardForPanId({userId , deviceId , cardId , cardHolderName , cardPanSuffix , localizedDescription , pan , expiryDate, cardScheme}:CardPanIdDetails): Promise<string> {
+      return Fooapplewalletreactplugin.addCardForUserIdWithPanAndExpiry(userId , deviceId , cardId , cardHolderName , cardPanSuffix , localizedDescription , pan , expiryDate, cardScheme);
     }
     export function deviceSupportsAppleWallet (): Promise<boolean> {
       return Fooapplewalletreactplugin.deviceSupportsAppleWallet();
